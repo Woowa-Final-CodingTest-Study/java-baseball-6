@@ -39,14 +39,15 @@ public class InputVIew {
 
     public boolean readRestart() {
         String input = Console.readLine();
-        int i;
-
         try {
-            i = Integer.parseInt(input);
+            int i = Integer.parseInt(input);
+            return isRestart(i);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
+    }
 
+    private boolean isRestart(int i) {
         if (i == Restart.RESTART.value)
             return true;
         if (i == Restart.TERMINATE.value)
