@@ -20,14 +20,23 @@ public class InputVIew {
 
     public List<Integer> readNumber() {
         String input = Console.readLine();
-        if (input.length() != 3)
+        validateInputLength(input);
+
+        List<Integer> numbers = new ArrayList<>();
+        try {
+            for (int i = 0; i < 3; i++) {
+                String s = input.substring(i, i + 1);
+                int n = Integer.parseInt(s);
+                numbers.add(n);
+            }
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
-        List<Integer> number = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            String s = input.substring(i, i+1);
-            int n = Integer.parseInt(s);
-            number.add(n);
         }
-        return number;
+        return numbers;
+    }
+
+    private void validateInputLength(String input) {
+        if (input.length() != 3) //TODO: 매직 넘버
+            throw new IllegalArgumentException();
     }
 }

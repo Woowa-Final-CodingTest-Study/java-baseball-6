@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.model.BaseballNumber;
 import baseball.view.InputVIew;
 import baseball.view.OutputView;
 
@@ -23,8 +24,14 @@ public class GameController {
     }
 
     public void start() {
+        List<Integer> answerNumber = BaseballNumber.generateRandomNumber();
+
         outputView.printStartGame();
         outputView.notifyInputNumber();
         List<Integer> number = inputVIew.readNumber();
+
+        BaseballNumber baseballNumber = new BaseballNumber(number);
+
+
     }
 }
