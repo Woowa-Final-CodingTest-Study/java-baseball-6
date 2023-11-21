@@ -27,24 +27,40 @@ class BaseballNumberTest {
         );
     }
 
-    @DisplayName("중복된 숫자가 포함된 리스트로 생성할 경우")
+    public static Stream<Arguments> SuccessfulInputProvider() {
+        return Stream.of(
+                arguments(List.of(1,2,3)),
+                arguments(List.of(3,4,7)),
+                arguments(List.of(3,4,7))
+        );
+    }
+
+    @DisplayName("실패 - 중복된 숫자가 포함된 리스트로 생성할 경우")
     @ParameterizedTest
     @MethodSource("duplicatedInputProvider")
-    void fail_constructor_with_duplicated_input(List<Integer> numbers) {
+    void constructor_fail_with_duplicated_input(List<Integer> numbers) {
         Assertions.assertThatThrownBy(() -> new BaseballNumber(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("0이 포함된 리스트로 생성할 경우")
+    @DisplayName("실패 - 0이 포함된 리스트로 생성할 경우")
     @ParameterizedTest
     @MethodSource("zeroContainingInputProvider")
-    void fail_constructor_with_zero_containing_input(List<Integer> numbers) {
+    void constructor_fail_with_zero_containing_input(List<Integer> numbers) {
         Assertions.assertThatThrownBy(() -> new BaseballNumber(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("성공")
+    @ParameterizedTest
+    @MethodSource("SuccessfulInputProvider")
+    void constructor_success(List<Integer> numbers) {
+        Assertions.assertThatNoException().isThrownBy(() -> new BaseballNumber(numbers));
     }
 
     @Test
     void compare() {
+        
     }
 
 }
