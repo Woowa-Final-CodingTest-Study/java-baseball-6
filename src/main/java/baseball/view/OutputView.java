@@ -1,5 +1,7 @@
 package baseball.view;
 
+import baseball.model.BaseballResult;
+
 public class OutputView {
     private static OutputView outputView;
 
@@ -19,6 +21,10 @@ public class OutputView {
 
     public void notifyInputNumber() {
         print("숫자를 입력해주세요 : ");
+    }
+
+    public void printResult(BaseballResult result) {
+        println(result.toString());
     }
 
     private void print(String message) {

@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.model.BaseballNumber;
+import baseball.model.BaseballResult;
 import baseball.view.InputVIew;
 import baseball.view.OutputView;
 
@@ -24,14 +25,16 @@ public class GameController {
     }
 
     public void start() {
-        List<Integer> answerNumber = BaseballNumber.generateRandomNumber();
+        while (true) {
+            BaseballNumber answerNumber = BaseballNumber.generateRandomNumber();
 
-        outputView.printStartGame();
-        outputView.notifyInputNumber();
-        List<Integer> number = inputVIew.readNumber();
+            outputView.printStartGame();
+            outputView.notifyInputNumber();
+            List<Integer> number = inputVIew.readNumber();
 
-        BaseballNumber baseballNumber = new BaseballNumber(number);
-
-
+            BaseballNumber baseballNumber = new BaseballNumber(number);
+            BaseballResult result = BaseballNumber.compare(baseballNumber, answerNumber);
+            outputView.printResult(result);
+        }
     }
 }

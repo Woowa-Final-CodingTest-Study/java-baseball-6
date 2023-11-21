@@ -14,7 +14,7 @@ public class BaseballNumber {
         this.numbers = numbers;
     }
 
-    public static List<Integer> generateRandomNumber() {
+    public static BaseballNumber generateRandomNumber() {
         List<Integer> number = new ArrayList<>();
         while (number.size() < 3) {
             int n = Randoms.pickNumberInRange(1, 9);
@@ -22,7 +22,7 @@ public class BaseballNumber {
                 continue;
             number.add(n);
         }
-        return number;
+        return new BaseballNumber(number);
     }
 
     private void validateDuplicated(List<Integer> numbers) {
@@ -34,5 +34,26 @@ public class BaseballNumber {
             if (count != 1)
                 throw new IllegalArgumentException();
         }
+    }
+
+    public int length() {
+        return numbers.size();
+    }
+
+    public static BaseballResult compare(BaseballNumber input, BaseballNumber n2) {
+        BaseballResult result = new BaseballResult();
+
+        for (int i = 0, integersSize = input.numbers.size(); i < integersSize; i++) {
+            Integer n1 = input.numbers.get(i);
+            if (!n2.numbers.contains(n1))
+                continue;
+            if (i == n2.numbers.indexOf(n1)) {
+                result.incrementStrike();
+                continue;
+            }
+            result.incrementBall();
+        }
+
+        return result;
     }
 }
