@@ -41,10 +41,9 @@ class BaseballNumberTest {
                 arguments(new BaseballNumber(List.of(3, 4, 5)), new BaseballNumber(List.of(7, 4, 5)), "2스트라이크", false),
                 arguments(new BaseballNumber(List.of(6, 3, 7)), new BaseballNumber(List.of(6, 3, 7)), "3스트라이크", true)
         );
-
     }
 
-    @DisplayName("실패 - 중복된 숫자가 포함된 리스트로 생성할 경우")
+    @DisplayName("생성자 - 실패: 중복된 숫자가 포함된 리스트로 생성할 경우")
     @ParameterizedTest
     @MethodSource("duplicatedInputProvider")
     void constructor_fail_with_duplicated_input(List<Integer> numbers) {
@@ -52,7 +51,7 @@ class BaseballNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("실패 - 0이 포함된 리스트로 생성할 경우")
+    @DisplayName("생성자 - 실패: 0이 포함된 리스트로 생성할 경우")
     @ParameterizedTest
     @MethodSource("zeroContainingInputProvider")
     void constructor_fail_with_zero_containing_input(List<Integer> numbers) {
@@ -60,7 +59,7 @@ class BaseballNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("성공")
+    @DisplayName("생성자 - 성공")
     @ParameterizedTest
     @MethodSource("SuccessfulInputProvider")
     void constructor_success(List<Integer> numbers) {
