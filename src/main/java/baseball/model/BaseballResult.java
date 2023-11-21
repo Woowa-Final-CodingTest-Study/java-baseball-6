@@ -26,4 +26,8 @@ public class BaseballResult {
             sb.append("낫싱");
         return sb.toString();
     }
+
+    public boolean isMatch() {
+        return strike == 3;
+    }
 }

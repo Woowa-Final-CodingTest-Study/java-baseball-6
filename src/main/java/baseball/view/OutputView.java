@@ -27,6 +27,14 @@ public class OutputView {
         println(result.toString());
     }
 
+    public void printGameComplete() {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+    }
+
+    public void notifyInputRestart() {
+        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+    }
+
     private void print(String message) {
         System.out.print(message);
     }

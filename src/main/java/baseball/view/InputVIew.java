@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.model.Restart;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
@@ -33,6 +34,23 @@ public class InputVIew {
             throw new IllegalArgumentException();
         }
         return numbers;
+    }
+
+    public boolean readRestart() {
+        String input = Console.readLine();
+        int i;
+
+        try {
+            i = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+
+        if (i == Restart.RESTART.value)
+            return true;
+        if (i == Restart.TERMINATE.value)
+            return false;
+        throw new IllegalArgumentException();
     }
 
     private void validateInputLength(String input) {

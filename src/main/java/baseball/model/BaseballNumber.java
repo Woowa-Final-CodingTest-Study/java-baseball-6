@@ -36,18 +36,14 @@ public class BaseballNumber {
         }
     }
 
-    public int length() {
-        return numbers.size();
-    }
-
-    public static BaseballResult compare(BaseballNumber input, BaseballNumber n2) {
+    public static BaseballResult compare(BaseballNumber input, BaseballNumber answer) {
         BaseballResult result = new BaseballResult();
 
-        for (int i = 0, integersSize = input.numbers.size(); i < integersSize; i++) {
-            Integer n1 = input.numbers.get(i);
-            if (!n2.numbers.contains(n1))
+        for (int i = 0, length = input.numbers.size(); i < length; i++) {
+            Integer n = input.numbers.get(i);
+            if (!answer.numbers.contains(n))
                 continue;
-            if (i == n2.numbers.indexOf(n1)) {
+            if (i == answer.numbers.indexOf(n)) {
                 result.incrementStrike();
                 continue;
             }
