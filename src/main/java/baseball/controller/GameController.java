@@ -25,10 +25,17 @@ public class GameController {
     }
 
     public void start() {
-        outputView.printStartGame();
-
         while (true) {
+            outputView.printStartGame();
             BaseballNumber answerNumber = BaseballNumber.generateRandomNumber();
+            boolean isRestart = playGame(answerNumber);
+            if (!isRestart)
+                break;
+        }
+    }
+
+    private boolean playGame(BaseballNumber answerNumber) {
+        while (true) {
             outputView.notifyInputNumber();
             List<Integer> number = inputVIew.readNumber();
             BaseballNumber baseballNumber = new BaseballNumber(number);
@@ -39,9 +46,7 @@ public class GameController {
             if (result.isMatch()) {
                 outputView.printGameComplete();
                 outputView.notifyInputRestart();
-                boolean isRestart = inputVIew.readRestart();
-                if(!isRestart)
-                    break;
+                return inputVIew.readRestart();
             }
         }
     }
