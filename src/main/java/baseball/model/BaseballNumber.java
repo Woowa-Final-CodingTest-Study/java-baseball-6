@@ -11,6 +11,7 @@ public class BaseballNumber {
 
     public BaseballNumber(List<Integer> numbers) {
         validateDuplicated(numbers);
+        validateZero(numbers);
         this.numbers = numbers;
     }
 
@@ -34,6 +35,11 @@ public class BaseballNumber {
             if (count != 1)
                 throw new IllegalArgumentException();
         }
+    }
+
+    private void validateZero(List<Integer> numbers) {
+        if (numbers.contains(0))
+            throw new IllegalArgumentException();
     }
 
     public static BaseballResult compare(BaseballNumber input, BaseballNumber answer) {
