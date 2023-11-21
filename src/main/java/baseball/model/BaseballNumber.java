@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballNumber {
-
+    public static int LENGTH = 3;
+    public static int RANGE_MIN = 1;
+    public static int RANGE_MAX = 9;
     private final List<Integer> numbers;
 
     public BaseballNumber(List<Integer> numbers) {
@@ -17,8 +19,8 @@ public class BaseballNumber {
 
     public static BaseballNumber generateRandomNumber() {
         List<Integer> number = new ArrayList<>();
-        while (number.size() < 3) {
-            int n = Randoms.pickNumberInRange(1, 9);
+        while (number.size() < LENGTH) {
+            int n = Randoms.pickNumberInRange(RANGE_MIN, RANGE_MAX);
             if (number.contains(n))
                 continue;
             number.add(n);
@@ -45,7 +47,7 @@ public class BaseballNumber {
     public static BaseballResult compare(BaseballNumber input, BaseballNumber answer) {
         BaseballResult result = new BaseballResult();
 
-        for (int i = 0, length = input.numbers.size(); i < length; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             Integer n = input.numbers.get(i);
             if (!answer.numbers.contains(n))
                 continue;

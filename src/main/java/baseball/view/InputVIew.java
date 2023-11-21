@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.model.BaseballNumber;
 import baseball.model.Restart;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -25,7 +26,7 @@ public class InputVIew {
 
         List<Integer> numbers = new ArrayList<>();
         try {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < BaseballNumber.LENGTH; i++) {
                 String s = input.substring(i, i + 1);
                 int n = Integer.parseInt(s);
                 numbers.add(n);
@@ -54,7 +55,7 @@ public class InputVIew {
     }
 
     private void validateInputLength(String input) {
-        if (input.length() != 3) //TODO: 매직 넘버
+        if (input.length() != BaseballNumber.LENGTH)
             throw new IllegalArgumentException();
     }
 }
