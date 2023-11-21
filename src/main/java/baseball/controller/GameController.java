@@ -3,6 +3,8 @@ package baseball.controller;
 import baseball.view.InputVIew;
 import baseball.view.OutputView;
 
+import java.util.List;
+
 public class GameController {
     private static GameController gameController;
     private final InputVIew inputVIew;
@@ -21,5 +23,8 @@ public class GameController {
     }
 
     public void start() {
+        outputView.printStartGame();
+        outputView.notifyInputNumber();
+        List<Integer> number = inputVIew.readNumber();
     }
 }
