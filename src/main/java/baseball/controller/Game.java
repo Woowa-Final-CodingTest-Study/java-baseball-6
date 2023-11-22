@@ -1,5 +1,7 @@
 package baseball.controller;
 
+import static baseball.util.constants.RESTART;
+
 import baseball.domain.Baseball;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -43,7 +45,7 @@ public class Game {
 
     private void showEnding() {
         OutputView.printEnding();
-        if (requestRestart().equals("1")) {
+        if (requestRestart().equals(RESTART)) {
             play();
         }
     }
