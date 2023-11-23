@@ -6,11 +6,11 @@ import static baseball.constant.MessageConstant.*;
 public class OutputView {
     private final String LINE_SEPARATOR = System.lineSeparator();
     public void printGameStart() {
-        System.out.println(GAME_START_MESSAGE.getMessage());
+        System.out.println(GAME_START.getMessage());
     }
 
     public void printInputNumber() {
-        System.out.print(INPUT_NUMBER_MESSAGE.getMessage());
+        System.out.print(INPUT_NUMBER.getMessage());
     }
 
     public void printCount(int strike, int ball) {
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void printGameOver() {
-        System.out.println(GAME_OVER_MESSAGE.getMessage());
+        System.out.println(GAME_OVER.getMessage());
     }
 
     public void printAskReStart(){
