@@ -14,6 +14,10 @@ public class OutputView {
     }
 
     public void printCount(int strike, int ball) {
+        if(strike == 0 && ball == 0){
+            System.out.println(NOTHING.getCount());
+            return;
+        }
         if (strike == 0) {
             System.out.printf(BALL.getCount(), ball);
             return;
