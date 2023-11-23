@@ -4,7 +4,7 @@ import static baseball.constant.CountConstant.*;
 import static baseball.constant.MessageConstant.*;
 
 public class OutputView {
-
+    private final String LINE_SEPARATOR = System.lineSeparator();
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE.getMessage());
     }
@@ -19,14 +19,14 @@ public class OutputView {
             return;
         }
         if (strike == 0) {
-            System.out.printf(BALL.getCount(), ball);
+            System.out.printf(BALL.getCount() + LINE_SEPARATOR, ball);
             return;
         }
         if (ball == 0) {
-            System.out.printf(STRIKE.getCount(), strike);
+            System.out.printf(STRIKE.getCount() + LINE_SEPARATOR, strike);
             return;
         }
-        System.out.printf(BALL_STRIKE.getCount(), ball, strike);
+        System.out.printf(BALL_STRIKE.getCount() + LINE_SEPARATOR, ball, strike);
     }
 
     public void printGameOver() {
