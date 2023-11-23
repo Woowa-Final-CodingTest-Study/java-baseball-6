@@ -29,15 +29,21 @@ public class MainController {
     public void compareNumbers() {
         List<Integer> computerNumbers = numberController.createComputerNumbers();
         while (true) {
-            outputView.printInputNumber();
-            String input = inputView.readInput();
-            numberValidation.validateInputNumber(input);
+            String input = getUserInput();
 
             if (countController.calculateCount(computerNumbers, input)) {
                 inputFinishOrReGame();
                 break;
             }
         }
+    }
+
+    public String getUserInput() {
+        outputView.printInputNumber();
+        String input = inputView.readInput();
+        numberValidation.validateInputNumber(input);
+
+        return input;
     }
 
     public void inputFinishOrReGame() {
