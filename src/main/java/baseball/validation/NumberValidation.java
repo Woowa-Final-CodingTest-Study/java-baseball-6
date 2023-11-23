@@ -8,15 +8,16 @@ public class NumberValidation {
     public void validateInputNumber(String input) {
         validateNull(input);
         validateIntRange(input);
+        validateInputLength(input);
         validateInputForm(input);
         validateDuplicateNumbers(input);
     }
 
-    public void validateInputReStartNumber(String input){
+    public void validateInputReStartNumber(String input) {
         validateNull(input);
         validateIntRange(input);
         validateInputForm(input);
-        validateInputReStartNumber(input);
+        validateReStartNumber(input);
     }
 
     public void validateNull(String input) {
@@ -29,6 +30,12 @@ public class NumberValidation {
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException illegalArgumentException) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateInputLength(String input) {
+        if (input.length() != 3) {
             throw new IllegalArgumentException();
         }
     }
@@ -52,7 +59,7 @@ public class NumberValidation {
     }
 
     public void validateReStartNumber(String input) {
-        if (input.equals("1") && input.equals("2")){
+        if (!input.equals("1") && !input.equals("2")) {
             throw new IllegalArgumentException();
         }
     }
