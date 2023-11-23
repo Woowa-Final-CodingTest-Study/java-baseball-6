@@ -1,9 +1,9 @@
 package baseball.constant;
 
 public enum CountConstant {
-    BALL("%d볼"),
-    STRIKE("%d스트라이크"),
-    BALL_STRIKE("%d볼 %d스트라이크");
+    BALL("%d볼\n"),
+    STRIKE("%d스트라이크\n"),
+    BALL_STRIKE("%d볼 %d스트라이크\n");
 
     private final String count;
 
