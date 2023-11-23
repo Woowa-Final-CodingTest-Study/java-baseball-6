@@ -6,38 +6,37 @@ import baseball.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CountController {
 
     OutputView outputView = new OutputView();
 
     public boolean calculateCount(List<Integer> computerNumbers, String input) {
-        List<Integer> userNumbers = Arrays.stream(input.split(""))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
+        List<Integer> userNumbers = convertInput(input);
         Count count = generateCount(computerNumbers, userNumbers);
 
         outputView.printCount(count.getStrike(), count.getBall());
         return checkStrikeCount(count.getStrike());
     }
 
-    public Count generateCount(List<Integer> computerNumbers, List<Integer> userNumbers) {
-        int strike = 0;
-        int ball = 0;
-        for (int i = 0; i < userNumbers.size(); i++) {
-            int computerNumber = computerNumbers.get(i);
-            int userNumber = userNumbers.get(i);
+    public List<Integer> convertInput(String input) {
+        return Arrays.stream(input.split(""))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 
-            if(computerNumber == userNumber) {
-                strike++;
-                continue;
-            }
-            if(computerNumbers.contains(userNumber)){
-                ball++;
-            }
-        }
-        return new Count(strike, ball);
+    public Count generateCount(List<Integer> computerNumbers, List<Integer> userNumbers) {
+        long strike = IntStream.range(0, userNumbers.size())
+                .filter(i -> computerNumbers.get(i).equals(userNumbers.get(i)))
+                .count();
+
+        long ball = IntStream.range(0, userNumbers.size())
+                .filter(i -> !computerNumbers.get(i).equals(userNumbers.get(i))
+                        && computerNumbers.contains(userNumbers.get(i)))
+                .count();
+
+        return new Count((int) strike, (int) ball);
     }
 
     public boolean checkStrikeCount(int strike) {
