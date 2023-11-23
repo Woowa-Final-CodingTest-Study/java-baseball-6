@@ -21,7 +21,7 @@ public class NumberValidation {
     }
 
     public void validateNull(String input) {
-        if (input == "" || input.equals(null)) {
+        if (input.equals("") || input == null) {
             throw new IllegalArgumentException();
         }
     }

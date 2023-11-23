@@ -13,16 +13,13 @@ public class CountController {
 
     public boolean calculateCount(List<Integer> computerNumbers, String input) {
         List<Integer> userNumbers = Arrays.stream(input.split(""))
-                .map(s -> Integer.parseInt(s))
+                .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
         Count count = generateCount(computerNumbers, userNumbers);
 
         outputView.printCount(count.getStrike(), count.getBall());
-        if (checkStrikeCount(count.getStrike())) {
-            return true;
-        }
-        return false;
+        return checkStrikeCount(count.getStrike());
     }
 
     public Count generateCount(List<Integer> computerNumbers, List<Integer> userNumbers) {
