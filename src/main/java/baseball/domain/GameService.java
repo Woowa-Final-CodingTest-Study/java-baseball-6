@@ -7,8 +7,13 @@ public class GameService {
     public static final String RESTART = "1";
     public static final String EXIT = "2";
 
-    InputView inputView = new InputView();
-    RandomNumberGenerator generator = new RandomNumberGenerator();
+    InputView inputView;
+    RandomNumberGenerator generator;
+
+    public GameService(InputView inputView, RandomNumberGenerator generator) {
+        this.inputView = inputView;
+        this.generator = generator;
+    }
 
     public void start() {
         OutputView.printStartGame();
