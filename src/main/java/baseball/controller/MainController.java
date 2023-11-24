@@ -1,5 +1,7 @@
 package baseball.controller;
 
+import baseball.domain.CountCalculator;
+import baseball.domain.ComputerNumberGenerator;
 import baseball.validation.NumberValidation;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -8,16 +10,16 @@ import java.util.List;
 
 public class MainController {
 
-    private final NumberController numberController;
-    private final CountController countController;
+    private final ComputerNumberGenerator computerNumberGenerator;
+    private final CountCalculator countCalculator;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     NumberValidation numberValidation = new NumberValidation();
 
     public MainController() {
-        numberController = new NumberController();
-        countController = new CountController();
+        computerNumberGenerator = new ComputerNumberGenerator();
+        countCalculator = new CountCalculator();
     }
 
     public void startGame() {
@@ -27,11 +29,11 @@ public class MainController {
     }
 
     public void compareNumbers() {
-        List<Integer> computerNumbers = numberController.createComputerNumbers();
+        List<Integer> computerNumbers = computerNumberGenerator.createComputerNumbers();
         while (true) {
             String input = getUserInput();
 
-            if (countController.calculateCount(computerNumbers, input)) {
+            if (countCalculator.calculateCount(computerNumbers, input)) {
                 outputView.printGameOver();
                 inputFinishOrReGame();
                 break;

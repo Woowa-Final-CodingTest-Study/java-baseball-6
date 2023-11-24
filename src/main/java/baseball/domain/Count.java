@@ -1,4 +1,4 @@
-package baseball.util;
+package baseball.domain;
 
 public class Count {
     private final int strike;

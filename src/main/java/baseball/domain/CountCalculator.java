@@ -1,13 +1,12 @@
-package baseball.controller;
+package baseball.domain;
 
-import baseball.util.Count;
 import baseball.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class CountController {
+public class CountCalculator {
 
     OutputView outputView = new OutputView();
 

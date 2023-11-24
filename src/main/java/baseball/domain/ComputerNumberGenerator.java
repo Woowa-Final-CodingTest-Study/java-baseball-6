@@ -1,11 +1,11 @@
-package baseball.controller;
+package baseball.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumberController {
+public class ComputerNumberGenerator {
 
     public List<Integer> createComputerNumbers() {
         List<Integer> randomNumbers = new ArrayList<>();
