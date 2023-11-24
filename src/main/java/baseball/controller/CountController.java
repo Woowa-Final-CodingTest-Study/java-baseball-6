@@ -2,7 +2,6 @@ package baseball.controller;
 
 import baseball.util.Count;
 import baseball.view.OutputView;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +16,7 @@ public class CountController {
         Count count = generateCount(computerNumbers, userNumbers);
 
         outputView.printCount(count.getStrike(), count.getBall());
-        return checkStrikeCount(count.getStrike());
+        return Count.checkStrikeCount(count);
     }
 
     public List<Integer> convertInput(String input) {
@@ -37,13 +36,5 @@ public class CountController {
                 .count();
 
         return new Count((int) strike, (int) ball);
-    }
-
-    public boolean checkStrikeCount(int strike) {
-        if (strike == 3) {
-            outputView.printGameOver();
-            return true;
-        }
-        return false;
     }
 }

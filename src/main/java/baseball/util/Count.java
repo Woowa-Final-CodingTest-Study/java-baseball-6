@@ -16,4 +16,8 @@ public class Count {
     public int getBall() {
         return ball;
     }
+
+    public static boolean checkStrikeCount(Count count) {
+        return count.getStrike() == 3;
+    }
 }

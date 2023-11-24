@@ -32,6 +32,7 @@ public class MainController {
             String input = getUserInput();
 
             if (countController.calculateCount(computerNumbers, input)) {
+                outputView.printGameOver();
                 inputFinishOrReGame();
                 break;
             }
