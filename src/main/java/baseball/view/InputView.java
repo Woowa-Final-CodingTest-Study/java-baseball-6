@@ -1,7 +1,5 @@
 package baseball.view;
 
-
-import baseball.domain.User;
 import baseball.domain.UserNumbers;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
