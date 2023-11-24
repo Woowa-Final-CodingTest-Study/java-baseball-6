@@ -1,15 +1,11 @@
 package baseball.domain;
 
-import baseball.view.OutputView;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CountCalculator {
-
-    OutputView outputView = new OutputView();
 
     public Count calculateCount(List<Integer> computerNumbers, String input) {
         List<Integer> userNumbers = convertInput(input);

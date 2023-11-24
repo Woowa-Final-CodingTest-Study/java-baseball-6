@@ -13,10 +13,6 @@ public enum MessageConstant {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public void print() {
         System.out.print(message);
     }
