@@ -6,7 +6,7 @@ import static baseball.constant.MessageConstant.*;
 public class OutputView {
     private final String LINE_SEPARATOR = System.lineSeparator();
     public void printGameStart() {
-        GAME_START_MESSAGE.print();
+        GAME_START_MESSAGE.print(LINE_SEPARATOR);
     }
 
     public void printInputNumber() {
@@ -30,10 +30,10 @@ public class OutputView {
     }
 
     public void printGameOver() {
-        GAME_OVER_MESSAGE.print();
+        GAME_OVER_MESSAGE.print(LINE_SEPARATOR);
     }
 
     public void printAskReStart(){
-        ASK_RESTART_MESSAGE.getMessage();
+        ASK_RESTART_MESSAGE.print(LINE_SEPARATOR);
     }
 }
