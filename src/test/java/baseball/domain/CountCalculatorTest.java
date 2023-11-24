@@ -1,9 +1,8 @@
-package baseball.controller;
+package baseball.domain;
 
-import baseball.domain.Count;
-import baseball.domain.CountCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,8 +12,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
-class CountControllerTest {
+class CountCalculatorTest {
 
     private CountCalculator countCalculator;
 
@@ -40,19 +40,29 @@ class CountControllerTest {
         );
     }
 
-    @DisplayName("3스트라이크 인지에 따른 true 또는 false를 반환하는지 확인")
+    @DisplayName("스트라이크와 볼 카운트가 제대로 수행되는지 확인")
     @ParameterizedTest
     @MethodSource("provideCompareNumbers")
-    void checkTrueOrFalse(List<Integer> computerNumbers, String input, boolean answer) {
-        boolean result = countCalculator.calculateCount(computerNumbers, input);
+    void checkTrueOrFalse(List<Integer> computerNumbers, String input, Count answer) {
+        Count result = countCalculator.calculateCount(computerNumbers, input);
 
-        assertThat(result).isEqualTo(answer);
+        assertThat(result).usingRecursiveComparison().isEqualTo(answer);
     }
 
     public static Stream<Arguments> provideCompareNumbers() {
         return Stream.of(
-                Arguments.of(Arrays.asList(1, 2, 3), "123", true),
-                Arguments.of(Arrays.asList(4, 5, 6), "457", false)
+                Arguments.of(Arrays.asList(1, 2, 3), "123", new Count(3, 0)),
+                Arguments.of(Arrays.asList(4, 5, 6), "457", new Count(2, 0))
         );
+    }
+
+    @DisplayName("입력받은 값을 리스트로 반환하는지 확인")
+    @Test
+    void checkInputToList() {
+        String input = "123";
+        List<Integer> result = countCalculator.convertInput(input);
+        List<Integer> answer = Arrays.asList(1, 2, 3);
+
+        assertThat(result).isEqualTo(answer);
     }
 }
