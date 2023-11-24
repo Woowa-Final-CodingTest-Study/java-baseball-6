@@ -1,8 +1,9 @@
 package baseball.controller;
 
+import baseball.domain.Count;
 import baseball.domain.CountCalculator;
 import baseball.domain.ComputerNumberGenerator;
-import baseball.validation.NumberValidation;
+import baseball.domain.InputNumberGenerator;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -10,17 +11,11 @@ import java.util.List;
 
 public class MainController {
 
-    private final ComputerNumberGenerator computerNumberGenerator;
-    private final CountCalculator countCalculator;
-
+    ComputerNumberGenerator computerNumberGenerator = new ComputerNumberGenerator();
+    CountCalculator countCalculator = new CountCalculator();
+    InputNumberGenerator inputNumberGenerator = new InputNumberGenerator();
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    NumberValidation numberValidation = new NumberValidation();
-
-    public MainController() {
-        computerNumberGenerator = new ComputerNumberGenerator();
-        countCalculator = new CountCalculator();
-    }
 
     public void startGame() {
         outputView.printGameStart();
@@ -31,9 +26,10 @@ public class MainController {
     public void compareNumbers() {
         List<Integer> computerNumbers = computerNumberGenerator.createComputerNumbers();
         while (true) {
-            String input = getUserInput();
+            outputView.printInputNumber();
+            String input = inputNumberGenerator.getUserInput(inputView.readInput());
 
-            if (countCalculator.calculateCount(computerNumbers, input)) {
+            if (checkContinueGame(countCalculator.calculateCount(computerNumbers, input))) {
                 outputView.printGameOver();
                 inputFinishOrReGame();
                 break;
@@ -41,18 +37,15 @@ public class MainController {
         }
     }
 
-    public String getUserInput() {
-        outputView.printInputNumber();
-        String input = inputView.readInput();
-        numberValidation.validateInputNumber(input);
-
-        return input;
+    public boolean checkContinueGame(Count count) {
+        outputView.printCount(count.getStrike(), count.getBall());
+        return Count.checkStrikeCount(count);
     }
 
     public void inputFinishOrReGame() {
         outputView.printAskReStart();
         String input = inputView.readInput();
-        numberValidation.validateInputReStartNumber(input);
+        inputNumberGenerator.validateReStartNumber(input);
 
         if (input.equals("1")) {
             compareNumbers();

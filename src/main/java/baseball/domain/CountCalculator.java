@@ -1,6 +1,7 @@
 package baseball.domain;
 
 import baseball.view.OutputView;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,12 +11,11 @@ public class CountCalculator {
 
     OutputView outputView = new OutputView();
 
-    public boolean calculateCount(List<Integer> computerNumbers, String input) {
+    public Count calculateCount(List<Integer> computerNumbers, String input) {
         List<Integer> userNumbers = convertInput(input);
         Count count = generateCount(computerNumbers, userNumbers);
 
-        outputView.printCount(count.getStrike(), count.getBall());
-        return Count.checkStrikeCount(count);
+        return count;
     }
 
     public List<Integer> convertInput(String input) {
