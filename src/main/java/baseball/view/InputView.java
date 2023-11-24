@@ -2,19 +2,20 @@ package baseball.view;
 
 
 import baseball.domain.User;
+import baseball.domain.UserNumbers;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class InputView {
-    public User getUserInput() {
+    public UserNumbers getUserInput() {
         OutputView.printInputRequest();
         String input = Console.readLine();
         validateInteger(input);
         List<Integer> userNumbers = convertStringToList(input);
         validateUserNumbers(userNumbers);
-        return new User(userNumbers);
+        return new UserNumbers(userNumbers);
     }
 
     public List<Integer> convertStringToList(String input) {

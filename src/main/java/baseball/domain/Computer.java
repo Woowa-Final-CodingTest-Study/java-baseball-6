@@ -9,7 +9,7 @@ public class Computer {
         this.randomNumbers = randomNumbers;
     }
 
-    public BallStrikeCount calculateBallCount(User userNumbers) {
+    public BallStrikeCount calculateBallCount(UserNumbers userNumbers) {
         int ballCount = 0;
         int strikeCount = 0;
 

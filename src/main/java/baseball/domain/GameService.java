@@ -24,7 +24,7 @@ public class GameService {
         computer.printComputerNumbers();
         BallStrikeCount ballStrikeCount;
         do {
-            User userNumbers = inputView.getUserInput();
+            UserNumbers userNumbers = inputView.getUserInput();
             ballStrikeCount = computer.calculateBallCount(userNumbers);
             OutputView.printResult(ballStrikeCount);
         } while (ballStrikeCount.getStrikeCount() != 3);
